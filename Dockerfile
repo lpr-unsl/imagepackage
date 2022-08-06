@@ -39,11 +39,20 @@ COPY --from=updates /usr/sbin/ip6tables* /usr/sbin/
 COPY --from=updates /usr/sbin/iptables* /usr/sbin/
 COPY --from=updates /usr/bin/iptables-xml /usr/bin/iptables-xml
 COPY --from=updates /usr/sbin/ip6tables-apply /usr/sbin/ip6tables-apply
-RUN ln -s /bin/xtables-multi /bin/iptables
-RUN ln -s /bin/xtables-multi /bin/iptables-restore
-RUN ln -s /bin/xtables-multi /bin/iptables-save
-RUN ln -s /bin/xtables-multi /bin/ip6tables
-RUN ln -s /bin/xtables-multi /bin/ip6tables-restore
-RUN ln -s /bin/xtables-multi /bin/ip6tables-save
+RUN ln -s /sbin/xtables-multi /sbin/iptables
+RUN ln -s /sbin/xtables-multi /sbin/iptables-restore
+RUN ln -s /sbin/xtables-multi /sbin/iptables-save
+RUN ln -s /sbin/xtables-multi /sbin/ip6tables
+RUN ln -s /sbin/xtables-multi /sbin/ip6tables-restore
+RUN ln -s /sbin/xtables-multi /sbin/ip6tables-save
+#shared libs needed by iptables
+COPY --from=updates /usr/lib/x86_64-linux-gnu/libip4tc.so.0.1.0 /usr/lib/x86_64-linux-gnu/libip4tc.so.0.1.0
+RUN ln -s /usr/lib/x86_64-linux-gnu/libip4tc.so.0.1.0 /usr/lib/x86_64-linux-gnu/libip4tc.so.0
+COPY --from=updates /usr/lib/x86_64-linux-gnu/libip6tc.so.0.1.0 /usr/lib/x86_64-linux-gnu/libip6tc.so.0.1.0
+RUN ln -s /usr/lib/x86_64-linux-gnu/libip6tc.so.0.1.0 /usr/lib/x86_64-linux-gnu/libip6tc.so.0
+COPY --from=updates /usr/lib/x86_64-linux-gnu/libxtables.so.12.0.0 /usr/lib/x86_64-linux-gnu/libxtables.so.12.0.0
+RUN ln -s /usr/lib/x86_64-linux-gnu/libxtables.so.12.0.0 /usr/lib/x86_64-linux-gnu/libxtables.so.12
+
+#set root pass
 RUN echo root:lpr | chpasswd
 RUN apt autoremove
