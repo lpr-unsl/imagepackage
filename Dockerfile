@@ -23,8 +23,12 @@ COPY --from=updates /sbin/slattach /sbin/slattach
 COPY --from=updates /usr/sbin/arp /usr/sbin/arp
 #telnet package
 COPY --from=updates /usr/bin/telnet.netkit /usr/bin/telnet.netkit
+RUN ln -s /usr/bin/telnet.netkit /etc/alternatives/telnet
+RUN ln -s /etc/alternatives/telnet /usr/bin/telnet
 #netcat package
 COPY --from=updates /bin/nc.traditional /bin/nc.traditional
+RUN ln -s /bin/nc.traditional /etc/alternatives/nc
+RUN ln -s /etc/alternatives/nc /bin/nc
 #iptables package
 COPY --from=updates /sbin/xtables-multi /sbin/xtables-multi
 COPY --from=updates /usr/lib/x86_64-linux-gnu/xtables/* /usr/lib/x86_64-linux-gnu/xtables/
