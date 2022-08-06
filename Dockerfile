@@ -39,5 +39,11 @@ COPY --from=updates /usr/sbin/ip6tables* /usr/sbin/
 COPY --from=updates /usr/sbin/iptables* /usr/sbin/
 COPY --from=updates /usr/bin/iptables-xml /usr/bin/iptables-xml
 COPY --from=updates /usr/sbin/ip6tables-apply /usr/sbin/ip6tables-apply
+RUN ln -s /bin/xtables-multi /bin/iptables
+RUN ln -s /bin/xtables-multi /bin/iptables-restore
+RUN ln -s /bin/xtables-multi /bin/iptables-save
+RUN ln -s /bin/xtables-multi /bin/ip6tables
+RUN ln -s /bin/xtables-multi /bin/ip6tables-restore
+RUN ln -s /bin/xtables-multi /bin/ip6tables-save
 RUN echo root:lpr | chpasswd
 RUN apt autoremove
