@@ -19,6 +19,10 @@ jobs:
     - name: Get current date # get the date of the build
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+    - name: Build ROUTER Docker image # push The image to the docker hub
+      run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+    - name: Docker Push
+      run: docker push $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
 
 
 #  push-image-to-docker-hub:
