@@ -9,20 +9,21 @@ env:
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   REPO_NAME: ${{secrets.REPO_NAME}}
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v3
-    - name: ver
-      run: ls -l
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s) 
+    - name: docker login
+      run: | # log into docker hub account
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
+    - name: Get current date # get the date of the build
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
 
 
 #  push-image-to-docker-hub:
 #    runs-on: ubuntu-latest
 #    steps:
-#    - uses: actions/checkout@v2 # first action : checkout source code
 #    - name: docker login
 #      run: | # log into docker hub account
 #        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
