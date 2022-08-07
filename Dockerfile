@@ -37,7 +37,7 @@ COPY --from=updates /usr/sbin/nfnl_osf /usr/sbin/nfnl_osf
 COPY --from=updates /usr/share/iptables/iptables.xslt /usr/share/iptables/iptables.xslt
 COPY --from=updates /usr/sbin/ip6tables* /usr/sbin/
 COPY --from=updates /usr/sbin/iptables* /usr/sbin/
-COPY --from=updates /usr/bin/iptables-xml /usr/bin/iptables-xml
+#COPY --from=updates /usr/bin/iptables-xml /usr/bin/iptables-xml
 COPY --from=updates /usr/sbin/ip6tables-apply /usr/sbin/ip6tables-apply
 RUN ln -s /sbin/xtables-multi /sbin/iptables
 RUN ln -s /sbin/xtables-multi /sbin/iptables-restore
