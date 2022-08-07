@@ -10,17 +10,17 @@ LABEL mantainer=”ctaffer@unsl.edu.ar”
 #COPY --from=updates /bin/ip /bin/ip
 #COPY --from=updates /sbin/ip /sbin/ip
 #net-tool packages
-COPY --from=updates /bin/netstat /bin/netstat
-COPY --from=updates /sbin/ifconfig /sbin/ifconfig
-COPY --from=updates /sbin/ipmaddr /sbin/ipmaddr
-COPY --from=updates /sbin/iptunnel /sbin/iptunnel
-COPY --from=updates /sbin/mii-tool /sbin/mii-tool
-COPY --from=updates /sbin/nameif /sbin/nameif
-COPY --from=updates /sbin/plipconfig /sbin/plipconfig
-COPY --from=updates /sbin/rarp /sbin/rarp
-COPY --from=updates /sbin/route /sbin/route
-COPY --from=updates /sbin/slattach /sbin/slattach
-COPY --from=updates /usr/sbin/arp /usr/sbin/arp
+###COPY --from=updates /bin/netstat /bin/netstat
+###COPY --from=updates /sbin/ifconfig /sbin/ifconfig
+###COPY --from=updates /sbin/ipmaddr /sbin/ipmaddr
+###COPY --from=updates /sbin/iptunnel /sbin/iptunnel
+###COPY --from=updates /sbin/mii-tool /sbin/mii-tool
+###COPY --from=updates /sbin/nameif /sbin/nameif
+###COPY --from=updates /sbin/plipconfig /sbin/plipconfig
+###COPY --from=updates /sbin/rarp /sbin/rarp
+###COPY --from=updates /sbin/route /sbin/route
+###COPY --from=updates /sbin/slattach /sbin/slattach
+###COPY --from=updates /usr/sbin/arp /usr/sbin/arp
 #telnet package
 COPY --from=updates /usr/bin/telnet.netkit /usr/bin/telnet.netkit
 RUN ln -s /usr/bin/telnet.netkit /etc/alternatives/telnet
@@ -42,9 +42,9 @@ COPY --from=updates /usr/sbin/ip6tables-apply /usr/sbin/ip6tables-apply
 RUN ln -s /sbin/xtables-multi /sbin/iptables
 RUN ln -s /sbin/xtables-multi /sbin/iptables-restore
 RUN ln -s /sbin/xtables-multi /sbin/iptables-save
-RUN ln -s /sbin/xtables-multi /sbin/ip6tables
-RUN ln -s /sbin/xtables-multi /sbin/ip6tables-restore
-RUN ln -s /sbin/xtables-multi /sbin/ip6tables-save
+###RUN ln -s /sbin/xtables-multi /sbin/ip6tables
+###RUN ln -s /sbin/xtables-multi /sbin/ip6tables-restore
+###RUN ln -s /sbin/xtables-multi /sbin/ip6tables-save
 #shared libs needed by iptables
 COPY --from=updates /usr/lib/x86_64-linux-gnu/libip4tc.so.0.1.0 /usr/lib/x86_64-linux-gnu/libip4tc.so.0.1.0
 RUN ln -s /usr/lib/x86_64-linux-gnu/libip4tc.so.0.1.0 /usr/lib/x86_64-linux-gnu/libip4tc.so.0
