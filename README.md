@@ -1,1 +1,1 @@
-Repo fot auto build docker images used by netOSLAB
+Repo for auto build docker images used by netOSLAB
